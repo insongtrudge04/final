@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jose Rizal Trivia Quiz | Rizal Shrine Dapitan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="images/logo_new.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 4rem;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .question-card {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .option-btn {
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: translateX(10px);
+            border-color: var(--accent);
+        }
+
+        .option-btn.selected {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .quiz-progress {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-results {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .quiz-results.active {
+            display: block;
+        }
+
+        .score-display {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 2rem 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .result-message {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo_new.jpg" alt="Rizal Shrine Logo" class="nav-logo">
+                RIZAL <span>SHRINE</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="attractions.html">Attractions</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="trivia.html" class="active">Trivia</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero hero-small" style="background-image: url('images/hero-bg-v2.jpg');">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Rizal Trivia Quiz</h1>
+            <p>Test your knowledge about the life and legacy of our national hero.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="quiz-container glass reveal">
+            <div class="quiz-progress">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+
+            <div id="quiz-content">
+                <!-- Questions will be injected here via JS -->
+            </div>
+
+            <div id="quiz-results" class="quiz-results">
+                <h2>Quiz Complete!</h2>
+                <div class="score-display"><span id="finalScore">0</span>/5</div>
+                <p id="resultMsg" class="result-message">Great effort! You're learning more about Rizal's legacy.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <button onclick="location.reload()" class="btn btn-primary">Try Again</button>
+                    <a href="index.html" class="btn btn-outline">Back Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Rizal Shrine Dapitan City. Preserving National Heritage.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="disclaimer.html">Disclaimer</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        const quizData = [
+            {
+                question: "Where was Jose Rizal exiled from 1892 to 1896?",
+                options: ["Manila", "Dapitan", "Cebu", "Vigan"],
+                correct: 1
+            },
+            {
+                question: "What was the name of the estate Rizal bought with his lottery winnings in Dapitan?",
+                options: ["Talisay", "Calamba", "Fort Santiago", "Bagumbayan"],
+                correct: 0
+            },
+            {
+                question: "Which species discovered by Rizal in Dapitan is a flying lizard?",
+                options: ["Apogonia rizali", "Rachophorus rizali", "Draco rizali", "Varanus dapitana"],
+                correct: 2
+            },
+            {
+                question: "Which structure served as Rizal's clinic and dormitory for his students?",
+                options: ["Casa Cuadrada", "Casa Redonda", "Casa Residencia", "Museum"],
+                correct: 1
+            },
+            {
+                question: "How many years did Dr. Jose Rizal stay in exile in Dapitan?",
+                options: ["2 years", "3 years", "4 years", "5 years"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const quizContent = document.getElementById('quiz-content');
+        const progressFill = document.getElementById('progressFill');
+        const resultsEl = document.getElementById('quiz-results');
+        const finalScoreEl = document.getElementById('finalScore');
+        const resultMsgEl = document.getElementById('resultMsg');
+
+        function loadQuestion() {
+            if (currentQuestion >= quizData.length) {
+                showResults();
+                return;
+            }
+
+            const data = quizData[currentQuestion];
+            progressFill.style.width = `${(currentQuestion / quizData.length) * 100}%`;
+
+            quizContent.innerHTML = `
+                <div class="question-card active">
+                    <span class="eyebrow">Question ${currentQuestion + 1} of ${quizData.length}</span>
+                    <h2 class="section-title" style="margin-top: 1rem;">${data.question}</h2>
+                    <div class="options-grid">
+                        ${data.options.map((option, index) => `
+                            <button class="option-btn" onclick="selectOption(${index})">
+                                <span class="option-indicator" style="width: 24px; height: 24px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700;">${String.fromCharCode(65 + index)}</span>
+                                ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectOption(index) {
+            const data = quizData[currentQuestion];
+            if (index === data.correct) {
+                score++;
+            }
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            quizContent.style.display = 'none';
+            progressFill.style.width = '100%';
+            resultsEl.classList.add('active');
+            finalScoreEl.textContent = score;
+
+            if (score === 5) {
+                resultMsgEl.textContent = "Outstanding! You're a true champion of Rizal's history.";
+            } else if (score >= 3) {
+                resultMsgEl.textContent = "Great job! You have a solid understanding of Rizal's exile.";
+            } else {
+                resultMsgEl.textContent = "Keep exploring the shrine to learn more about our national hero!";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadQuestion);
+    </script>
+</body>
+
+</html>
