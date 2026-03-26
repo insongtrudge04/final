@@ -17,6 +17,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            navbar.classList.toggle('mobile-active');
+        });
+    }
+
+    // Close mobile menu when clicking a link or clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target) && navbar.classList.contains('mobile-active')) {
+            navbar.classList.remove('mobile-active');
+        }
+    });
+
+    // Close menu on link click (for mobile)
+    const navLinksList = document.querySelectorAll('.nav-links a');
+    navLinksList.forEach(link => {
+        link.addEventListener('click', () => {
+            navbar.classList.remove('mobile-active');
+        });
+    });
+
     // Reveal animations on scroll
     const observerOptions = {
         threshold: 0.15,

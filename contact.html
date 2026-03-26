@@ -18,7 +18,7 @@
         <div class="container">
             <a href="index.html" class="logo">
                 <img src="images/logo_new.jpg" alt="Rizal Shrine Logo" class="nav-logo">
-                RIZAL <span>SHRINE</span>
+                 RIZAL SHRINE<span>| Dapitan City</span>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -28,6 +28,11 @@
                 <li><a href="trivia.html">Trivia</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
@@ -35,7 +40,11 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <h1>Connect with History</h1>
-            <p>Plan your visit or reach out for historical inquiries.</p>
+            <p>Plan your visit or reach out for historical inquiries.</p>release notes after an update
+
+Release date: March 18, 2026
+
+
         </div>
     </header>
 
@@ -55,36 +64,40 @@
                             <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem;">Hours:</span>
                             <div style="color: var(--text-muted);">Tue – Sun, 8:00 AM – 4:00 PM</div>
                         </li>
-                        <li style="margin-bottom: 1.5rem;">
-                            <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem;">Email:</span>
-                            <div style="color: var(--text-muted);">info@rizalshrine-dapitan.gov.ph</div>
-                        </li>
+                    
                         <li style="margin-bottom: 1.5rem;">
                             <span style="font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem;">Phone:</span>
-                            <div style="color: var(--text-muted);">+63 (65) 123-4567</div>
+                            <div style="color: var(--text-muted);">0997 425 7740</div>
                         </li>
                     </ul>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
                 </div>
                 <div class="contact-form glass reveal reveal-right">
                     <span class="eyebrow">Digital Concierge</span>
                     <h2 class="section-title" style="margin-bottom: 2rem;">Inquiry Form</h2>
                     <p style="margin-bottom: 2.5rem; color: var(--text-muted);">Your message will be transmitted directly to our heritage management team.</p>
                     <form id="contactForm" action="https://formspree.io/f/mpqyerqd" method="POST">
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label for="name" style="font-weight: 600; font-size: 0.85rem; color: var(--accent);">Full Name</label>
-                            <input type="text" id="name" name="name" required placeholder="Dr. Juana Dela Cruz" style="margin-top: 0.5rem; width: 100%;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Dr. Juana Dela Cruz">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="_replyto" required placeholder="contact@example.com">
+                            </div>
                         </div>
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label for="email" style="font-weight: 600; font-size: 0.85rem; color: var(--accent);">Email Address</label>
-                            <input type="email" id="email" name="_replyto" required placeholder="contact@example.com" style="margin-top: 0.5rem; width: 100%;">
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required placeholder="Research / Tour Inquiry">
                         </div>
-                        <div class="form-group" style="margin-bottom: 1.5rem;">
-                            <label for="subject" style="font-weight: 600; font-size: 0.85rem; color: var(--accent);">Subject</label>
-                            <input type="text" id="subject" name="subject" required placeholder="Research / Tour Inquiry" style="margin-top: 0.5rem; width: 100%;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 2rem;">
-                            <label for="message" style="font-weight: 600; font-size: 0.85rem; color: var(--accent);">Your Message</label>
-                            <textarea id="message" name="message" rows="4" required placeholder="How can we assist your visit?" style="margin-top: 0.5rem; width: 100%;"></textarea>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="How can we assist your visit?"></textarea>
                         </div>
                         <!-- Hidden field to specify recipient if using a service or just as metadata -->
                         <input type="hidden" name="_to" value="rizalshrine7101@gmail.com">
@@ -104,7 +117,7 @@
             <div class="container">
                 <div class="section-header text-center reveal">
                     <span class="eyebrow">Location Hub</span>
-                    <h2 class="section-title">City Plaza & Rizal Park</h2>
+                    <h2 class="section-title">Rizal Park and Shrine Location</h2>
                 </div>
                 <div class="map-card glass reveal" style="padding: 1rem; position: relative;">
                     <iframe 
