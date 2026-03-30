@@ -1,0 +1,26 @@
+{
+  "name": "new-folder-1",
+  "version": "1.0.0",
+  "description": "A premium, modern Digital Heritage platform dedicated to preserving and showcasing the four-year exile of the Philippine National Hero, **Dr. Jose Rizal**, in Talisay, Dapitan City (1892-1896).",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/insongtrudge04/bayot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/insongtrudge04/bayot/issues"
+  },
+  "homepage": "https://github.com/insongtrudge04/bayot#readme",
+  "devDependencies": {
+    "vite": "^8.0.3"
+  }
+}

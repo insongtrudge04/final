@@ -87,49 +87,83 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lightbox Functionality
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const closeBtn = document.querySelector('.lightbox-close');
-        
-        // Open Lightbox
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('img');
-                const caption = item.querySelector('.overlay h4').textContent;
-                
-                lightboxImg.src = img.src;
-                lightboxCaption.textContent = caption;
-                lightbox.classList.add('active');
-                document.body.classList.add('lightbox-open');
-            });
-        });
+    // --- Global Lightbox System ---
+    
+    // Inject Lightbox if missing
+    if (!document.getElementById('lightbox')) {
+        const lb = document.createElement('div');
+        lb.id = 'lightbox';
+        lb.className = 'lightbox';
+        lb.innerHTML = `
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-img" class="lightbox-img" src="" alt="Full Screen View">
+                <h4 id="lightbox-caption" class="lightbox-caption"></h4>
+            </div>
+        `;
+        document.body.appendChild(lb);
+    }
 
-        // Close Lightbox
-        const closeLightbox = () => {
-            lightbox.classList.remove('active');
-            document.body.classList.remove('lightbox-open');
-            lightboxImg.src = ''; // Clear source to stop potential video playback if any
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    const openLightbox = (src, captionText) => {
+        lightboxImg.src = src;
+        lightboxCaption.textContent = captionText || "";
+        lightbox.classList.add('active');
+        document.body.classList.add('lightbox-open');
+    };
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('active');
+        document.body.classList.remove('lightbox-open');
+        setTimeout(() => { lightboxImg.src = ''; }, 300); // Clear after fade out
+    };
+
+    // Attach to all images in interest-based containers
+    const setupClickableImages = () => {
+        // Targets: Gallery Items, Cards, General Image Wrappers, and any standalone content images
+        const containers = document.querySelectorAll('.gallery-item, .card, .image-wrapper, .stat-card, .info-card');
+        const standaloneImages = document.querySelectorAll('main img:not(.nav-logo)');
+        
+        const attachToElement = (el, img) => {
+            if (!img || el.dataset.lightboxSet) return;
+            el.dataset.lightboxSet = "true";
+            el.style.cursor = 'zoom-in';
+            
+            el.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+                
+                let caption = "";
+                const heading = el.querySelector('h1, h2, h3, h4, .overlay h4');
+                if (heading) {
+                    caption = heading.textContent;
+                } else {
+                    caption = img.alt || "Historical Detail";
+                }
+                openLightbox(img.src, caption);
+            });
         };
 
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeLightbox();
+        containers.forEach(container => {
+            const img = container.querySelector('img');
+            attachToElement(container, img);
         });
 
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
+        standaloneImages.forEach(img => {
+            // Only attach to standalone image if it's not already handled by a container parent
+            if (!img.closest('.gallery-item, .card, .image-wrapper, .stat-card, .info-card')) {
+                attachToElement(img, img);
             }
         });
+    };
 
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                closeLightbox();
-            }
-        });
-    }
+    setupClickableImages();
+
+    // Event Listeners for closing
+    if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 });
