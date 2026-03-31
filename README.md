@@ -8,7 +8,7 @@ A premium, modern Digital Heritage platform dedicated to preserving and showcasi
 
 ### 💎 High-End UI/UX
 *   **Glassmorphism Aesthetic**: Modern, semi-transparent surfaces with deep blurs (`backdrop-filter`) and vibrant green accents.
-*   **Global Animation System**: Fluid scroll-based reveals, staggered grid entrances, and smooth page transitions for a professional feel.
+*   **Global Animation System**: Fluid scroll-based reveals, staggered grid entrances, and smooth page transitions powered by **Intersection Observer**.
 *   **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
 
 ### 📸 Immersive Media
@@ -24,17 +24,6 @@ A premium, modern Digital Heritage platform dedicated to preserving and showcasi
 
 ---
 
-## 🛠️ Technology Stack
-
-*   **HTML5**: Semantic structure for SEO and accessibility.
-*   **CSS3**: Custom-built design system with a heritage-focused "Multi-tone Green" palette.
-*   **JavaScript (Vanilla)**: 
-    *   **Intersection Observer API**: Drives the high-performance scroll reveal system.
-    *   **Event Handling**: Powers the lightbox gallery and the trivia quiz logic.
-*   **Google Fonts**: *Outfit* (for headings) and *Inter* (for body text).
-
----
-
 ## 📂 Project Structure
 
 ```text
@@ -42,7 +31,7 @@ A premium, modern Digital Heritage platform dedicated to preserving and showcasi
 ├── 📄 about.html        # History: Rizal's Life in Talisay
 ├── 📄 attractions.html  # Landmarks: Virtual guide and Grounds Map
 ├── 📄 gallery.html      # Photography: High-end Lightbox Gallery
-├── 📄 trivia.html       # Interactive: Knowledge Challenge Quiz
+├── 📄 quiz.html         # Interactive: Knowledge Challenge Quiz
 ├── 📄 contact.html      # Visitor Info: Maps and Inquiry Form
 ├── 📂 css/
 │   └── 📄 style.css      # Core Design System and Animations
@@ -53,21 +42,26 @@ A premium, modern Digital Heritage platform dedicated to preserving and showcasi
 
 ---
 
-## 🚀 Deployment & Local Setup
+## 🚀 Quick Start
 
 ### Running Locally
 1.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/insongtrudge04/shrineWeb7101_v3.git
-    cd shrineWeb7101_v3
+    git clone https://github.com/insongtrudge04/bayot.git
+    cd bayot
     ```
-2.  **Open in Browser**:
-    *   Simply double-click `index.html` or use a "Live Server" extension in your preferred IDE.
+2.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Start Development Server**:
+    ```bash
+    npm run dev
+    ```
 
 ---
 
 ## 🎨 Design Philosophy
-
 The website's palette is inspired by the **lush flora** and **earthy tones** of the Dapitan sanctuary.
 
 *   **#1B3322 (Deep Obsidian Green)**: Used for strong headings and authoritative text.
@@ -79,3 +73,4 @@ The website's palette is inspired by the **lush flora** and **earthy tones** of 
 ## 📜 License & Intellectual Property
 *Preserving National Heritage for future generations.*
 &copy; 2026 Rizal Shrine Dapitan City. All rights reserved.
+
